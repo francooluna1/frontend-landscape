@@ -2,8 +2,9 @@
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { DragDropModule } from '@angular/cdk/drag-drop'
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { HttpClientModule } from '@angular/common/http'
 
 //Components
 import { AppRoutingModule } from './app-routing.module'
@@ -12,7 +13,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component'
 
 //Pages
 import { ActivityBoardComponent } from './pages/activity-board/activity-board.component'
-import { ActivityComponent } from './pages/activity/activity.component'
 
 //Material
 import { MatDialogModule } from '@angular/material/dialog'
@@ -22,18 +22,23 @@ import { NewActivityModalComponent } from './pages/activity-board/new-activity-m
 import { MatGridListModule } from '@angular/material/grid-list'
 import { MatIconModule } from '@angular/material/icon'
 import { MatButtonModule } from '@angular/material/button'
+import { MatSelectModule } from '@angular/material/select'
+import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core'
+import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule  } from '@angular-material-components/datetime-picker'
 
 @NgModule({
   declarations: [
     AppComponent,
     ActivityBoardComponent,
     SidebarComponent,
-    ActivityComponent,
     NewActivityModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     DragDropModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -43,6 +48,13 @@ import { MatButtonModule } from '@angular/material/button'
     MatGridListModule,
     MatButtonModule,
     MatIconModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
+    MatRippleModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

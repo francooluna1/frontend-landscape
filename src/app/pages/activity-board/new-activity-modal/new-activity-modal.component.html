@@ -1,36 +1,68 @@
-<h2>Nueva Actividad</h2>
-<form (ngSubmit)="addActivity()" #activityForm="ngForm">
+<div class="container-modal">
+  <div class="navbar-modal">
+    <mat-icon aria-hidden="false" fontIcon="chevron_right"></mat-icon>
+    <span>Agregar nueva actividad</span>
+  </div>
+  <form [formGroup]="formGroup">
 
-  <!-- Título de la actividad -->
-  <mat-form-field>
-    <mat-label>Título</mat-label>
-    <input matInput name="title" [(ngModel)]="activity.title" required>
-  </mat-form-field>
+    <div class="activity-modal">
+      <mat-form-field>
+        <mat-label>Nombre de la actividad</mat-label>
+        <input matInput name="title" formControlName="title" placeholder="Busca una actvidad o crea una nueva..."
+          required>
+      </mat-form-field>
+    </div>
 
-  <!-- Tipo de la actividad -->
-  <mat-form-field>
-    <mat-label>Tipo</mat-label>
-    <input matInput name="type" [(ngModel)]="activity.type" required>
-  </mat-form-field>
+    <div class="activity-modal">
+      <mat-form-field>
+        <mat-label>Tipo de actividad</mat-label>
+        <mat-select name="type" formControlName="type" required>
+          <mat-option *ngFor="let type of typeActivity" [value]="type.value">
+            {{ type.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
-  <!-- Fecha de inicio -->
-  <mat-form-field>
-    <mat-label>Fecha de inicio</mat-label>
-    <input matInput name="startDate" [(ngModel)]="activity.startDate" required>
-  </mat-form-field>
+    <div class="activity-datetime-modal">
+      <mat-form-field>
+        <mat-label>Fecha de inicio</mat-label>
+        <input matInput name="startDate" formControlName="startDate" [matDatepicker]="pickerStart" [min]="minDate" [max]="maxDate">
+        <mat-datepicker-toggle matIconSuffix [for]="pickerStart"></mat-datepicker-toggle>
+        <mat-datepicker #pickerStart></mat-datepicker>
+      </mat-form-field>
 
-  <!-- Fecha de fin -->
-  <mat-form-field>
-    <mat-label>Fecha de fin</mat-label>
-    <input matInput name="endDate" [(ngModel)]="activity.endDate" required>
-  </mat-form-field>
+      <mat-form-field>
+        <mat-label>Fecha de finalizacion</mat-label>
+        <input matInput name="endDate" formControlName="endDate" [matDatepicker]="pickerEnd" [min]="minDate" [max]="maxDate">
+        <mat-datepicker-toggle matIconSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+        <mat-datepicker #pickerEnd></mat-datepicker>
+        <mat-error *ngIf="formGroup.get('startDate')?.value && formGroup.get('endDate')?.value && formGroup.get('startDate')?.value > formGroup.get('endDate')?.value">
+          La fecha de finalizacion debe ser mayor
+        </mat-error>
+      </mat-form-field>
+    </div>
 
-  <!-- Estado de la actividad -->
-  <mat-form-field>
-    <mat-label>Estado</mat-label>
-    <input matInput name="status" [(ngModel)]="activity.status" required>
-  </mat-form-field>
+    <div class="activity-datetime-modal">
+      <ngx-mat-timepicker name="startDate" formControlName="startDate"></ngx-mat-timepicker>
 
-  <button type="submit" [disabled]="!activityForm.form.valid">Agregar</button>
-  <button type="button" (click)="onNoClick()">Cancelar</button>
-</form>
+      <ngx-mat-timepicker name="endDate" formControlName="endDate"></ngx-mat-timepicker>
+    </div>
+
+    <div class="activity-modal">
+      <mat-form-field>
+        <mat-label>Estado de la actividad</mat-label>
+        <mat-select name="status" formControlName="status">
+          <mat-option *ngFor="let status of statusActivity" [value]="status.value">
+            {{ status.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="button-modal">
+      <button type="button" mat-flat-button (click)="cancel()">Cancelar</button>
+      <button type="submit" mat-flat-button color="primary" (click)=submit()>Agregar</button>
+    </div>
+  </form>
+</div>

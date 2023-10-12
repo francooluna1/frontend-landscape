@@ -19,67 +19,69 @@
                 <div class="example-box" *ngFor="let item of noDateAssigned; let i = index" cdkDrag>
                     <img [src]="item.type ? activityImages[item.type] : activityImages['ACTIVITY']" alt="">
                     <span>{{item.title}}</span>
-                    <button (click)="removeActivity(i, noDateAssigned)">Eliminar</button>
+                    <button (click)="editActivity(i, noDateAssigned)">Edit</button>
+                    <!-- <button (click)="removeActivity(i, noDateAssigned)">Eliminar</button> -->
                 </div>
             </div>
         </div>
 
         <div class="example-container">
             <h2 class="activity-board-date">
-                <span>22 de enero</span>
-                <small>({{ date1.length }})</small>
+                <span>12 de octubre</span>
+                <small>({{ dateOne.length }})</small>
             </h2>
 
-            <div cdkDropList id="date-one" class="example-list" [cdkDropListData]="date1"
-                [cdkDropListConnectedTo]="['date-two', 'date-three']"
+            <div cdkDropList id="date-one" class="example-list" [cdkDropListData]="dateOne"
+                [cdkDropListConnectedTo]="['no-date-assigned', 'date-two', 'date-three']"
                 (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let item of date1; let i = index" cdkDrag>
+                <div class="example-box" *ngFor="let item of dateOne; let i = index" cdkDrag>
                     <img [src]="item.type ? activityImages[item.type] : activityImages['ACTIVITY']" alt="">
                     <div>
                         <span>{{item.title}}</span>
-                        <p>{{ item.startDate | date:'hh:mm' }} - {{ item.endDate | date:'hh:mm' }}</p>
+                        <p>{{ item.startDate | date: 'HH:mm' }} - {{ item.endDate | date: 'HH:mm' }}</p>
                     </div>
-                    <button (click)="removeActivity(i, date1)">Eliminar</button>
+                    <button (click)="editActivity(i, dateOne)">Edit</button>
+                    <!-- <button (click)="removeActivity(i, dateOne)">Eliminar</button> -->
                 </div>
             </div>
         </div>
 
         <div class="example-container">
             <h2 class="activity-board-date">
-                <span>23 de enero</span>
-                <small>({{ date2.length }})</small>
+                <span>13 de octubre</span>
+                <small>({{ dateTwo.length }})</small>
             </h2>
 
-            <div cdkDropList id="date-two" class="example-list" [cdkDropListData]="date2"
-                [cdkDropListConnectedTo]="['date-one', 'date-three']"
+            <div cdkDropList id="date-two" class="example-list" [cdkDropListData]="dateTwo"
+                [cdkDropListConnectedTo]="['no-date-assigned', 'date-one', 'date-three']"
                 (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let item of date2; let i = index" cdkDrag>
+                <div class="example-box" *ngFor="let item of dateTwo; let i = index" cdkDrag>
                     <img [src]="item.type ? activityImages[item.type] : activityImages['ACTIVITY']" alt="">
                     <div>
                         <span>{{item.title}}</span>
-                        <p>{{ item.startDate | date:'hh:mm' }} - {{ item.endDate | date:'hh:mm' }}</p>
+                        <p>{{ item.startDate | date: 'HH:mm' }} - {{ item.endDate | date: 'HH:mm' }}</p>
                     </div>
-                    <button (click)="removeActivity(i, date2)">Eliminar</button>
+                    <button (click)="removeActivity(i, dateTwo)">Eliminar</button>
                 </div>
             </div>
         </div>
 
         <div class="example-container">
             <h2 class="activity-board-date">
-                <span>24 de enero</span>
-                <small>({{ date3.length }})</small>
+                <span>14 de octubre</span>
+                <small>({{ dateThree.length }})</small>
             </h2>
 
-            <div cdkDropList id="date-three" class="example-list" [cdkDropListData]="date3"
-                [cdkDropListConnectedTo]="['date-one', 'date-two']"
+            <div cdkDropList id="date-three" class="example-list" [cdkDropListData]="dateThree"
+                [cdkDropListConnectedTo]="['no-date-assigned', 'date-one', 'date-two']"
                 (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let item of date3; let i = index" cdkDrag>
+                <div class="example-box" *ngFor="let item of dateThree; let i = index" cdkDrag>
                     <img [src]="item.type ? activityImages[item.type] : activityImages['ACTIVITY']" alt="">
                     <div>
                         <span>{{item.title}}</span>
-                        <p>{{ item.startDate | date:'hh:mm' }} - {{ item.endDate | date:'hh:mm' }}</p>
+                        <p>{{ item.startDate | date: 'HH:mm' }} - {{ item.endDate | date: 'HH:mm' }}</p>
                     </div>
-                    <button (click)="removeActivity(i, date3)">Eliminar</button>
+                    <button (click)="removeActivity(i, dateThree)">Eliminar</button>
                 </div>
             </div>
         </div>
