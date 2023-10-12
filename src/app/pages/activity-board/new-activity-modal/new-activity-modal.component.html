@@ -1,0 +1,36 @@
+<h2>Nueva Actividad</h2>
+<form (ngSubmit)="addActivity()" #activityForm="ngForm">
+
+  <!-- Título de la actividad -->
+  <mat-form-field>
+    <mat-label>Título</mat-label>
+    <input matInput name="title" [(ngModel)]="activity.title" required>
+  </mat-form-field>
+
+  <!-- Tipo de la actividad -->
+  <mat-form-field>
+    <mat-label>Tipo</mat-label>
+    <input matInput name="type" [(ngModel)]="activity.type" required>
+  </mat-form-field>
+
+  <!-- Fecha de inicio -->
+  <mat-form-field>
+    <mat-label>Fecha de inicio</mat-label>
+    <input matInput name="startDate" [(ngModel)]="activity.startDate" required>
+  </mat-form-field>
+
+  <!-- Fecha de fin -->
+  <mat-form-field>
+    <mat-label>Fecha de fin</mat-label>
+    <input matInput name="endDate" [(ngModel)]="activity.endDate" required>
+  </mat-form-field>
+
+  <!-- Estado de la actividad -->
+  <mat-form-field>
+    <mat-label>Estado</mat-label>
+    <input matInput name="status" [(ngModel)]="activity.status" required>
+  </mat-form-field>
+
+  <button type="submit" [disabled]="!activityForm.form.valid">Agregar</button>
+  <button type="button" (click)="onNoClick()">Cancelar</button>
+</form>

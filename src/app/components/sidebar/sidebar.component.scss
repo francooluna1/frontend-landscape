@@ -1,0 +1,13 @@
+.sidebar {
+    background-color: #3154AD;
+    color: #fff;
+    min-height: 100vh;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        padding-top: 30px;
+    }
+}
