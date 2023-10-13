@@ -2,15 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { Activity } from 'src/app/interfaces/Activity'
-interface TypeActivity {
-  value: string
-  viewValue: string
-}
-
-interface StatusActivity {
-  value: string
-  viewValue: string
-}
+import { StatusActivity } from 'src/app/interfaces/StatusActivity'
+import { TypeActivity } from 'src/app/interfaces/TypeActivity'
 
 @Component({
   selector: 'app-new-activity-modal',
@@ -23,7 +16,8 @@ export class NewActivityModalComponent implements OnInit {
   minDate: Date
   maxDate: Date
   isEdit: boolean = false
-  activityData: Activity | undefined
+  startTime: Date = new Date()
+  endTime: Date = new Date()
 
   typeActivity: TypeActivity[] = [
     { value: 'ACTIVITY', viewValue: 'Actividad' },
@@ -44,18 +38,18 @@ export class NewActivityModalComponent implements OnInit {
 
     this.minDate = new Date('2023-10-12 00:00:00')
     this.maxDate = new Date('2023-10-14 00:00:00')
+
     const currentDate = new Date()
 
     this.formGroup = this.formBuilder.group({
       title: ['', Validators.required],
       type: ['', Validators.required],
-      startDate: [currentDate],
-      endDate: [currentDate],
-      status: [null],
+      startDate: [currentDate, Validators.required],
+      endDate: [currentDate, Validators.required],
+      status: [null, Validators.required],
     }, { validators: this.dateRangeValidator })
 
     if (this.data && this.data.isEdit) {
-      console.log(this.data)
       const startDateString: string | null = this.data.activity.startDate
       const endDateString: string | null = this.data.activity.endDate
       if(startDateString !== null && endDateString !== null) {
@@ -74,7 +68,8 @@ export class NewActivityModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    //
+    this.startTime = this.formGroup.get('startDate')?.value
+    this.endTime = this.formGroup.get('endDate')?.value
   }
 
   submit() {
@@ -89,13 +84,28 @@ export class NewActivityModalComponent implements OnInit {
   }
 
   dateRangeValidator(formGroup: FormGroup) {
-    const startDate = formGroup.get('startDate')?.value;
-    const endDate = formGroup.get('endDate')?.value;
+    const startDate = formGroup.get('startDate')?.value
+    const endDate = formGroup.get('endDate')?.value
 
     if (startDate && endDate && startDate > endDate) {
       formGroup.get('endDate')?.setErrors({ invalidRange: true })
     } else {
       formGroup.get('endDate')?.setErrors(null)
     }
+  }
+
+  onDateChange(event: any) {
+    const selectedDate = event.value
+    const newStartTime = new Date(selectedDate)
+    const newEndTime = new Date(selectedDate)
+
+    newStartTime.setHours(this.startTime.getHours())
+    newStartTime.setMinutes(this.startTime.getMinutes())
+
+    newEndTime.setHours(this.endTime.getHours())
+    newEndTime.setMinutes(this.endTime.getMinutes())
+
+    this.formGroup.get('startDate')?.setValue(newStartTime)
+    this.formGroup.get('endDate')?.setValue(newEndTime)
   }
 }

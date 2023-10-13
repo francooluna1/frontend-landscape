@@ -1,27 +1,46 @@
-# FrontendLandscape
+# Angular Frontend Landscape
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3.
+## Visión general
 
-## Development server
+Este proyecto, **frontend-landscape**, es una aplicación Angular diseñada para demostrar conocimientos generales sobre el puesto a desempeñar.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Comenzando
 
-## Code scaffolding
+Estas instrucciones te ayudarán a obtener una copia del proyecto en tu máquina local para propósitos de desarrollo y prueba.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Requisitos previos
 
-## Build
+Asegúrate de tener las siguientes herramientas instaladas antes de comenzar:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- [Node.js](https://nodejs.org/) - Entorno de ejecución de JavaScript.
+- [npm](https://www.npmjs.com/) - Gestor de paquetes de Node.
+- [Angular CLI](https://angular.io/cli) - Herramienta de comandos de Angular
+- [Backend Landscape](https://github.com/francooluna1/backend-landscape) Ejecutar el backend
 
-## Running unit tests
+## Instalación
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Clona el repositorio:
 
-## Running end-to-end tests
+   ```git clone https://github.com/your-username/frontend-landscape.git```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+2. Ingresar al directorio del proyecto:
 
-## Further help
+    ```cd frontend-landscape ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+3. Instalar las dependencias:
+
+    ```npm install ```
+
+4. Iniciar la aplicacion:
+
+    ```ng serve --o ```
+
+## Construido con
+
+- **Angular**: Una poderosa plataforma y marco que facilita la construcción de aplicaciones del lado del cliente utilizando HTML, CSS y JavaScript/TypeScript.
+
+- **Angular Material**: Conjunto de componentes elegantes basados en Material Design, diseñados específicamente para integrarse perfectamente con Angular.
+
+- **RxJS**: Biblioteca que ofrece extensiones reactivas, permitiendo un manejo eficiente y declarativo de la lógica asíncrona.
+
+- **@angular-material-components/datetime-picker**: Biblioteca utilizada para aplicar datetime

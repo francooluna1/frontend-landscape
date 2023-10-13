@@ -19,8 +19,14 @@
                 <div class="example-box" *ngFor="let item of noDateAssigned; let i = index" cdkDrag>
                     <img [src]="item.type ? activityImages[item.type] : activityImages['ACTIVITY']" alt="">
                     <span>{{item.title}}</span>
-                    <button (click)="editActivity(i, noDateAssigned)">Edit</button>
-                    <!-- <button (click)="removeActivity(i, noDateAssigned)">Eliminar</button> -->
+                    <div class="options-activity">
+                        <button class="edit-activity" (click)="editActivity(i, noDateAssigned)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button (click)="removeActivity(i, noDateAssigned)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -40,8 +46,14 @@
                         <span>{{item.title}}</span>
                         <p>{{ item.startDate | date: 'HH:mm' }} - {{ item.endDate | date: 'HH:mm' }}</p>
                     </div>
-                    <button (click)="editActivity(i, dateOne)">Edit</button>
-                    <!-- <button (click)="removeActivity(i, dateOne)">Eliminar</button> -->
+                    <div class="options-activity">
+                        <button class="edit-activity" (click)="editActivity(i, dateOne)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button (click)="removeActivity(i, dateOne)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -61,7 +73,14 @@
                         <span>{{item.title}}</span>
                         <p>{{ item.startDate | date: 'HH:mm' }} - {{ item.endDate | date: 'HH:mm' }}</p>
                     </div>
-                    <button (click)="removeActivity(i, dateTwo)">Eliminar</button>
+                    <div class="options-activity">
+                        <button class="edit-activity" (click)="editActivity(i, dateTwo)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button (click)="removeActivity(i, dateTwo)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -81,7 +100,14 @@
                         <span>{{item.title}}</span>
                         <p>{{ item.startDate | date: 'HH:mm' }} - {{ item.endDate | date: 'HH:mm' }}</p>
                     </div>
-                    <button (click)="removeActivity(i, dateThree)">Eliminar</button>
+                    <div class="options-activity">
+                        <button class="edit-activity" (click)="editActivity(i, dateThree)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button (click)="removeActivity(i, dateThree)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

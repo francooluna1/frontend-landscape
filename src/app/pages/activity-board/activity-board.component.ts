@@ -46,6 +46,7 @@ export class ActivityBoardComponent implements OnInit {
         this.activities.forEach((res) => {
           this.availableDays(res)
         })
+        this.sortArraysByTime()
       })
   }
 
@@ -58,7 +59,7 @@ export class ActivityBoardComponent implements OnInit {
         event.container.data,
         event.previousIndex,
         event.currentIndex,
-      );
+      )
     }
   }
 
@@ -71,12 +72,12 @@ export class ActivityBoardComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: Activity) => {
       if (result) {
         this.availableDays({ ...result, activityId: this.activities.length + 1 })
+        this.sortArraysByTime()
       }
     })
   }
 
   editActivity(index: number, list: Activity[]) {
-    console.log(index)
     const dialogRef = this.dialog.open(NewActivityModalComponent, {
       width: '800px',
       height: '800px',
@@ -85,17 +86,12 @@ export class ActivityBoardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: Activity) => {
       if (result) {
-        list.splice(index, 1)
-        // Actualiza la actividad editada en la lista
-        list[index] = result
-
-        // Si se cambia la fecha de inicio, actualiza los arrays de fechas
+        this.removeActivity(index, list)
         this.availableDays(result)
+        this.sortArraysByTime()
       }
     })
   }
-
-
 
   removeActivity(index: number, list: Activity[]) {
     if (index >= 0 && index < list.length) {
@@ -104,21 +100,33 @@ export class ActivityBoardComponent implements OnInit {
   }
 
   availableDays(res: any) {
-    console.log(res)
     const startDate = res.startDate ? new Date(res.startDate).toLocaleDateString() : null
     switch (startDate) {
       case '12/10/2023':
         this.dateOne.push(res)
-        break;
+        break
       case '13/10/2023':
         this.dateTwo.push(res)
-        break;
+        break
       case '14/10/2023':
         this.dateThree.push(res)
-        break;
+        break
       default:
         this.noDateAssigned.push(res)
-        break;
+        break
     }
+  }
+
+  sortArraysByTime() {
+    const compareByTime = (a: Activity, b: Activity) => {
+      const startTimeA = a.startDate ? new Date(a.startDate).getTime() : 0
+      const startTimeB = b.startDate ? new Date(b.startDate).getTime() : 0
+      return startTimeA - startTimeB
+    }
+
+    this.noDateAssigned.sort(compareByTime)
+    this.dateOne.sort(compareByTime)
+    this.dateTwo.sort(compareByTime)
+    this.dateThree.sort(compareByTime)
   }
 }
